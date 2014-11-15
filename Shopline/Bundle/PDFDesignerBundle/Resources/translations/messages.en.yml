@@ -1,0 +1,14 @@
+shopline:
+    template:
+        title: 'Templates'
+        manage_template: 'Manage Template'
+        manage: 'Manage Template'
+        designertemplate:
+            name:
+                label: 'Name'
+            Owner:
+                label: 'Owner'
+    pdfdesigner:
+        designertemplate:
+            owner:
+                label: 'Owner'

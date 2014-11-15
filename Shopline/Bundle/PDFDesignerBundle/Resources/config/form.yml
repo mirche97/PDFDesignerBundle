@@ -1,0 +1,32 @@
+parameters:
+    shopline.form.handler.designertemplate.class: Shopline\Bundle\PDFDesignerBundle\Form\Handler\DesignerTemplateHandler
+    shopline.form.type.designertemplate.class:    Shopline\Bundle\PDFDesignerBundle\Form\Type\DesignerTemplateType
+    shopline.form.type.designertemplate_translation.class: Shopline\Bundle\PDFDesignerBundle\Form\Type\DesignerTemplateTranslationType
+services:
+    shopline.form.designertemplate:
+        class: Symfony\Component\Form\Form
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments: ["shopline_designertemplate", "shopline_designertemplate", null]
+
+    shopline.form.handler.designertemplate:
+        class: %shopline.form.handler.designertemplate.class%
+        scope: request
+        arguments:
+            - @shopline.form.designertemplate
+            - @request
+            - @doctrine.orm.entity_manager
+            - @translator
+
+    shopline.form.type.designertemplate:
+        class: %shopline.form.type.designertemplate.class%
+        arguments:
+            - @oro_config.user
+            - @oro_locale.settings
+        tags:
+            - { name: form.type, alias: shopline_designertemplate }
+
+    shopline.form.type.designertemplate_translation:
+        class: %shopline.form.type.designertemplate_translation.class%
+        tags:
+            - { name: form.type, alias: shopline_designertemplate_translatation }

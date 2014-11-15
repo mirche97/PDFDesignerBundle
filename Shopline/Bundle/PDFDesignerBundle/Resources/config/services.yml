@@ -1,0 +1,31 @@
+parameters:
+    shopline.designertemplate.entity.class:              Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplate
+    shopline.designertemplate.datagrid_helper:           Shopline\Bundle\PDFDesignerBundle\Datagrid\DesignerTemplateGridHelper
+    shopline.designertemplate.datagrid_view_list.class:  Shopline\Bundle\PDFDesignerBundle\Datagrid\DesignerTemplatesViewList
+    shopline.designertemplate.datagrid_helper.class:     Shopline\Bundle\PDFDesignerBundle\Datagrid\DesignerTemplateGridHelper
+    shopline.listener.navigation_listener.class:         Shopline\Bundle\PDFDesignerBundle\EventListener\NavigationListener
+#    shopline_pdf_designer.example.class: Shopline\Bundle\PDFDesignerBundle\Example
+
+services:
+    shopline.listener.navigation_listener:
+        class: %shopline.listener.navigation_listener.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @oro_entity_config.provider.entity
+            - @oro_security.security_facade
+            - @oro_security.acl_helper
+        tags:
+            - { name: kernel.event_listener, event: oro_menu.configure.application_menu, method: onNavigationConfigure }
+
+    shopline.designertemplate.datagrid_view_list:
+        class: %shopline.designertemplate.datagrid_view_list.class%
+        arguments:
+            - @translator
+    shopline.designertemplate.datagrid_helper:
+        class: %shopline.designertemplate.datagrid_helper.class%
+        arguments:
+            - @oro_entity.entity_provider
+            - @translator
+#    shopline_pdf_designer.example:
+#        class: %shopline_pdf_designer.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,14 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+{% set gridName = 'designer-templates' %}
+{% set pageTitle = 'oro.email.emailtemplate.entity_plural_label'|trans %}
+
+{% block navButtons %}
+
+    {% if resource_granted('shopline_designertemplate_create') %}
+        {{ UI.addButton({
+            'path' : path('shopline_designertemplate_create'),
+            'entity_label': 'oro.email.emailtemplate.entity_label'|trans
+        }) }}
+    {% endif %}
+{% endblock %}

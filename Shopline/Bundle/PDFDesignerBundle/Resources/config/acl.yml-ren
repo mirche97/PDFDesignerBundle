@@ -1,0 +1,4 @@
+shopline_designertemplate_create:
+    type: entity
+    class: ShoplinePDFDesignerBundle:DesignerTemplate
+    permission: EDIT

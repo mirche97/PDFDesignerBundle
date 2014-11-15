@@ -1,0 +1,27 @@
+oro_menu_config:
+    items:
+        shopline_pdfdesigner:
+            label: 'shopline.template.title'
+            uri:   '#'
+            extras:
+                position: 300
+        shopline_tab_link:
+            label: 'shopline.template.manage'
+            route: shopline_manage_template
+            extras:
+                routes: ['/^shopline_manage_template/']
+                description: 'shopline.template.manage_template'
+    tree:
+        application_menu:
+            children:
+                shopline_pdfdesigner:
+                    children:
+                        shopline_tab_link: ~
+
+        usermenu:
+            children:
+                shopline_tab_link: ~
+oro_titles:
+    shopline_tab_link: 'shopline.template.title'
+    shopline_designertemplate_create: "Create Template"
+    shopline_manage_template: ~
