@@ -3,6 +3,10 @@ PDFDesignerBundle
 
 PDF Designer Bundle for creating PDF templates for [Oro Platform](https://github.com/orocrm/platform) using [wkhtmltopdf](http://wkhtmltopdf.org/).
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/23664eed-3391-4310-85d8-c3c4c6199ba5/mini.png)](https://insight.sensiolabs.com/projects/23664eed-3391-4310-85d8-c3c4c6199ba5)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/shopline/PDFDesignerBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/shopline/PDFDesignerBundle/?branch=master)
+
 ## Installation
 
 First make sure wkhtmltopdf is installed properly. Recommended way on Ubuntu is to install it with xvfb using a wrapper script to avoid needing X server to run.
