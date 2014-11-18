@@ -1,0 +1,42 @@
+{
+    "name": "shopline/oro-pdfdesigner",
+    "description": "Save reports as PDF",
+    "license": "MIT",
+    "homepage": "https://github.com/shopline/PDFDesignerBundle",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jaskamal",
+            "email": "codeperitus@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "oro/platform": "*",
+        "knplabs/knp-snappy-bundle": "v1.2"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php app/console cache:clear --env=dev",
+            "php app/console cache:clear --env=prod",
+            "php app/console oro:translation:dump",
+            "php app/console doctrine:schema:update --force"
+        ],
+        "post-update-cmd": [
+            "php app/console cache:clear --env=dev",
+            "php app/console cache:clear --env=prod",
+            "php app/console oro:translation:dump",
+            "php app/console doctrine:schema:update --force"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
