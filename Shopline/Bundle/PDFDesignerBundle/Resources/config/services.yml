@@ -5,7 +5,7 @@ parameters:
     shopline.designertemplate.datagrid_helper.class:     Shopline\Bundle\PDFDesignerBundle\Datagrid\DesignerTemplateGridHelper
     shopline.listener.navigation_listener.class:         Shopline\Bundle\PDFDesignerBundle\EventListener\NavigationListener
 #    shopline_pdf_designer.example.class: Shopline\Bundle\PDFDesignerBundle\Example
-
+    
 services:
     shopline.listener.navigation_listener:
         class: %shopline.listener.navigation_listener.class%
@@ -26,6 +26,3 @@ services:
         arguments:
             - @oro_entity.entity_provider
             - @translator
-#    shopline_pdf_designer.example:
-#        class: %shopline_pdf_designer.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

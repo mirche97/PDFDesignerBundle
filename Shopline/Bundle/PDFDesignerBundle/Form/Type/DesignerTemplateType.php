@@ -84,7 +84,7 @@ class DesignerTemplateType extends AbstractQueryDesignerType
             )
         );
 
-        // disable some fields for non editable email template
+        // disable some fields for non editable designer template
         $setDisabled = function (&$options) {
             if (isset($options['auto_initialize'])) {
                 $options['auto_initialize'] = false;

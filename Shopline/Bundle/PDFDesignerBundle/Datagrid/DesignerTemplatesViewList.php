@@ -14,7 +14,7 @@ class DesignerTemplatesViewList extends AbstractViewsList
     {
         return array(
             new View(
-                'oro.email.datagrid.emailtemplate.view.system_templates',
+                'oro.designer.datagrid.designertemplate.view.system_templates',
                 array(
                     'isSystem' => array(
                         'value' => 1,

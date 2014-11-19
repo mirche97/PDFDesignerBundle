@@ -1,0 +1,84 @@
+parameters:
+    shopline.form.handler.designertemplate.class: Shopline\Bundle\PDFDesignerBundle\Form\Handler\DesignerTemplateHandler
+    shopline.form.type.designertemplate.class:    Shopline\Bundle\PDFDesignerBundle\Form\Type\DesignerTemplateType
+    shopline.form.type.designertemplate_translation.class: Shopline\Bundle\PDFDesignerBundle\Form\Type\DesignerTemplateTranslationType
+    shopline.template_renderer.class: Shopline\Bundle\PDFDesignerBundle\Provider\DesignerRenderer
+
+    # providers
+    shopline.designertemplate.variable_provider.class: Shopline\Bundle\PDFDesignerBundle\Provider\VariablesProvider
+    shopline.twig.template_security_policy.class: Twig_Sandbox_SecurityPolicy
+    # cache key
+    shopline.cache.available_in_template_key: 'shopline.available_in_template_fields'
+
+services:
+    shopline.form.designertemplate:
+        class: Symfony\Component\Form\Form
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments: ["shopline_designertemplate", "shopline_designertemplate", null]
+
+    shopline.form.handler.designertemplate:
+        class: %shopline.form.handler.designertemplate.class%
+        scope: request
+        arguments:
+            - @shopline.form.designertemplate
+            - @request
+            - @doctrine.orm.entity_manager
+            - @translator
+
+    shopline.form.type.designertemplate:
+        class: %shopline.form.type.designertemplate.class%
+        arguments:
+            - @oro_config.user
+            - @oro_locale.settings
+        tags:
+            - { name: form.type, alias: shopline_designertemplate }
+
+    shopline.form.type.designertemplate_translation:
+        class: %shopline.form.type.designertemplate_translation.class%
+        tags:
+            - { name: form.type, alias: shopline_designertemplate_translatation }
+
+    shopline.twig.string_loader:
+        class: Twig_Loader_String
+
+    shopline.template_renderer:
+        class: %shopline.template_renderer.class%
+        arguments:
+            - @shopline.twig.string_loader
+            -  # twig environment options
+              strict_variables: true
+            - @shopline.designertemplate.variable_provider
+            - @shopline.cache
+            - %shopline.cache.available_in_template_key%
+            - @shopline.twig.template_sandbox
+            - @translator
+            - @doctrine
+        lazy: true
+
+    shopline.designertemplate.variable_provider:
+        class: %shopline.designertemplate.variable_provider.class%
+
+    shopline.cache:
+          parent: oro.cache.abstract
+          calls:
+              - [setNamespace, ['shopline.cache']]
+    shopline.twig.template_sandbox:
+        class: Twig_Extension_Sandbox
+        arguments:
+            - @shopline.twig.template_security_policy
+            - true # use sandbox globally in instance
+
+    shopline.twig.template_security_policy:
+        class: %shopline.twig.template_security_policy.class%
+        arguments:
+            # tags
+            - [ 'app', 'for', 'if', 'spaceless' ]
+            # filters
+            - [ 'default', 'date', 'escape', 'format', 'length', 'lower', 'nl2br', 'number_format', 'title', 'trim', 'upper' ]
+            # methods
+            - []
+            # properties
+            - []
+            # functions
+            - [ 'date' ]

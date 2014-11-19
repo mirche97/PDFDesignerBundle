@@ -16,7 +16,7 @@
 {% block navButtons %}
     {% if resource_granted('oro_email_emailtemplate_preview') %}
         {{ UI.button({
-        'path' :  path('oro_email_emailtemplate_preview', {'id': form.vars.value.id }),
+        'path' :  path('shopline_designertemplate_preview', {'id': form.vars.value.id }),
         'title' : 'oro.email.emailtemplate.action.preview'|trans,
         'label' : 'oro.email.emailtemplate.action.preview'|trans,
         'aCss': 'btn-success dialog-form-renderer no-hash',
@@ -28,7 +28,7 @@
 
     {% if form.vars.value.id and resource_granted('oro_email_emailtemplate_clone') %}
         {{ UI.button({
-        'path':  path('oro_email_emailtemplate_clone', {'id': form.vars.value.id}),
+        'path':  path(' oro_email_emailtemplate_clone', {'id': form.vars.value.id}),
         'title': 'oro.email.emailtemplate.action.clone'|trans,
         'label': 'oro.email.emailtemplate.action.clone'|trans,
         'aCss': 'btn-success',

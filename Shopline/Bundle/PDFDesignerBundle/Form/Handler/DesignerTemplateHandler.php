@@ -61,7 +61,7 @@ class DesignerTemplateHandler
             // deny to modify system templates
             if ($entity->getIsSystem() && !$entity->getIsEditable()) {
                 $this->form->addError(
-                    new FormError($this->translator->trans('oro.email.handler.attempt_save_system_template'))
+                    new FormError($this->translator->trans('shopline.designer.handler.attempt_save_system_template'))
                 );
 
                 return false;
@@ -70,7 +70,7 @@ class DesignerTemplateHandler
             $this->form->submit($this->request);
 
             if ($this->form->isValid()) {
-                // mark an email template creating by an user as editable
+                // mark an designer template creating by an user as editable
                 if (!$entity->getId()) {
                     $entity->setIsEditable(true);
                 }

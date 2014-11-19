@@ -40,7 +40,7 @@ class DesignerTemplateGridHelper extends BaseGridHelper
     }
 
     /**
-     * Returns email template type choice list
+     * Returns designer template type choice list
      *
      * @return array
      */

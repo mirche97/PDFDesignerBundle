@@ -1,0 +1,85 @@
+<?php
+
+namespace Shopline\Bundle\PDFDesignerBundle;
+
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\ClassLoader\UniversalClassLoader;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\KernelInterface;
+
+use Oro\Bundle\EntityBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Shopline\Bundle\PDFDesignerBundle\DependencyInjection\Compiler\DesignerBodyLoaderPass;
+use Shopline\Bundle\PDFDesignerBundle\DependencyInjection\Compiler\DesignerOwnerConfigurationPass;
+use Shopline\Bundle\PDFDesignerBundle\DependencyInjection\Compiler\DesignerSynchronizerPass;
+use Shopline\Bundle\PDFDesignerBundle\DependencyInjection\Compiler\DesignerTemplateVariablesPass;
+
+class ShoplinePDFDesignerBundle extends Bundle
+{
+    const ENTITY_PROXY_NAMESPACE   = 'OroEntityProxy\ShoplinePDFDesignerBundle';
+    const CACHED_ENTITIES_DIR_NAME = 'oro_entities';
+    /**
+     * Constructor
+     *
+     * @param KernelInterface $kernel
+     */
+    public function __construct(KernelInterface $kernel)
+    {
+
+        $loader = new UniversalClassLoader();
+        $loader->registerNamespaces(
+            [
+                self::ENTITY_PROXY_NAMESPACE =>
+                    $kernel->getCacheDir() . DIRECTORY_SEPARATOR . self::CACHED_ENTITIES_DIR_NAME
+            ]
+        );
+        $loader->register();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new DesignerOwnerConfigurationPass());
+        $this->addDoctrineOrmMappingsPass($container);
+        $container->addCompilerPass(new DesignerBodyLoaderPass());
+        $container->addCompilerPass(new DesignerSynchronizerPass());
+        $container->addCompilerPass(new DesignerTemplateVariablesPass());
+    }
+
+    /**
+     * Add a compiler pass handles ORM mappings of designer proxy
+     *
+     * @param ContainerBuilder $container
+     */
+    protected function addDoctrineOrmMappingsPass(ContainerBuilder $container)
+    {
+        $entityCacheDir = sprintf(
+            '%s%s%s%s%s',
+            $container->getParameter('kernel.cache_dir'),
+            DIRECTORY_SEPARATOR,
+            self::CACHED_ENTITIES_DIR_NAME,
+            DIRECTORY_SEPARATOR,
+            str_replace('\\', DIRECTORY_SEPARATOR, self::ENTITY_PROXY_NAMESPACE)
+        );
+
+        $container->setParameter('shopline.entity.cache_dir', $entityCacheDir);
+        $container->setParameter('shopline.entity.cache_namespace', self::ENTITY_PROXY_NAMESPACE);
+        $container->setParameter('shopline.entity.proxy_name_template', '%sProxy');
+
+        // Ensure the cache directory exists
+        $fs = new Filesystem();
+        if (!is_dir($entityCacheDir)) {
+            $fs->mkdir($entityCacheDir, 0777);
+        }
+
+        $container->addCompilerPass(
+            DoctrineOrmMappingsPass::createYamlMappingDriver(
+                [$entityCacheDir => self::ENTITY_PROXY_NAMESPACE]
+            )
+        );
+    }
+}

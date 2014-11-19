@@ -148,28 +148,21 @@ class DefaultController extends Controller
             $em = $this->get('doctrine.orm.entity_manager');
             $designerTemplate = $em->getRepository('Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplate')->find($id);
         }
-        
-        $loadedEntity = $em->getRepository($designerTemplate->getEntityName())->findAll();
-        foreach( $loadedEntity as $entity ){
-            $neededEntity = $entity;
-            break;
-        }
-//        $loadedEntity = new $className();
-        
-        $twig = new \Twig_Environment(new \Twig_Loader_String());
-        
-        $content = $designerTemplate->getContent();
 
-        $str = $designerTemplate->getContent().'';
-        $content = $twig->render($str, array('entity'=> $neededEntity));
+        /** @var FormInterface $form */
+        $form = $this->get('shopline.form.designertemplate');
+        $form->setData($designerTemplate);
+        $request = $this->get('request');
 
-         //$content
+        if (in_array($request->getMethod(), array('POST', 'PUT'))) {
+            $form->submit($request);
+        }   
+   
+        $templateRendered = $this->get('shopline.template_renderer')
+            ->compilePreview($designerTemplate);
+
         return array(
-            'header' => $designerTemplate->getHeader(),
-            'footer' => $designerTemplate->getFooter(),
-            'styleContent'=>$designerTemplate->getStyleContent(),
-            'content'=> $content,
-            'entity' => $loadedEntity
+            'content'     => $templateRendered
         );
     }
     /**
@@ -182,7 +175,7 @@ class DefaultController extends Controller
         if ($this->get('shopline.form.handler.designertemplate')->process($entity)) {
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('oro.email.controller.emailtemplate.saved.message')
+                $this->get('translator')->trans('oro.designer.controller.designertemplate.saved.message')
             );
 
             return $this->get('oro_ui.router')->redirectAfterSave(

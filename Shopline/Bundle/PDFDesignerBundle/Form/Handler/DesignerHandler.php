@@ -55,7 +55,7 @@ class DesignerHandler
     /**
      * @var Processor
      */
-    protected $emailProcessor;
+    protected $designerProcessor;
 
     /**
      * @var NameFormatter
@@ -74,7 +74,7 @@ class DesignerHandler
      * @param Translator               $translator
      * @param SecurityContextInterface $securityContext
      * @param LoggerInterface          $logger
-     * @param Processor                $emailProcessor
+     * @param Processor                $designerProcessor
      * @param NameFormatter            $nameFormatter
      * @param EntityRoutingHelper      $entityRoutingHelper
      *
@@ -86,7 +86,7 @@ class DesignerHandler
         EntityManager $em,
         Translator $translator,
         SecurityContextInterface $securityContext,
-        Processor $emailProcessor,
+        Processor $designerProcessor,
         LoggerInterface $logger,
         NameFormatter $nameFormatter,
         EntityRoutingHelper $entityRoutingHelper
@@ -96,7 +96,7 @@ class DesignerHandler
         $this->em                  = $em;
         $this->translator          = $translator;
         $this->securityContext     = $securityContext;
-        $this->emailProcessor      = $emailProcessor;
+        $this->designerProcessor      = $designerProcessor;
         $this->logger              = $logger;
         $this->nameFormatter       = $nameFormatter;
         $this->entityRoutingHelper = $entityRoutingHelper;
@@ -105,10 +105,10 @@ class DesignerHandler
     /**
      * Process form
      *
-     * @param  Email $model
+     * @param  Designer $model
      * @return bool True on successful processing, false otherwise
      */
-    public function process(Email $model)
+    public function process(Designer $model)
     {
         if ($this->request->getMethod() === 'GET') {
             $this->initModel($model);
@@ -120,12 +120,12 @@ class DesignerHandler
 
             if ($this->form->isValid()) {
                 try {
-                    $this->emailProcessor->process($model);
+                    $this->designerProcessor->process($model);
                     return true;
                 } catch (\Exception $ex) {
-                    $this->logger->error('Email sending failed.', array('exception' => $ex));
+                    $this->logger->error('Designer sending failed.', array('exception' => $ex));
                     $this->form->addError(
-                        new FormError($this->translator->trans('oro.email.handler.unable_to_send_email'))
+                        new FormError($this->translator->trans('oro.designer.handler.unable_to_send_designer'))
                     );
                 }
             }
@@ -138,9 +138,9 @@ class DesignerHandler
      * Populate a model with initial data.
      * This method is used to load an initial data from a query string
      *
-     * @param Email $model
+     * @param Designer $model
      */
-    protected function initModel(Email $model)
+    protected function initModel(Designer $model)
     {
         if ($this->request->query->has('gridName')) {
             $model->setGridName($this->request->query->get('gridName'));
@@ -156,14 +156,14 @@ class DesignerHandler
         if ($this->request->query->has('from')) {
             $from = $this->request->query->get('from');
             if (!empty($from)) {
-                $this->preciseFullEmailAddress($from);
+                $this->preciseFullDesignerAddress($from);
             }
             $model->setFrom($from);
         }
         if ($this->request->query->has('to')) {
             $to = trim($this->request->query->get('to'));
             if (!empty($to)) {
-                $this->preciseFullEmailAddress($to, $model->getEntityClass(), $model->getEntityId());
+                $this->preciseFullDesignerAddress($to, $model->getEntityClass(), $model->getEntityId());
             }
             $model->setTo(array($to));
         }
@@ -171,15 +171,6 @@ class DesignerHandler
             $subject = trim($this->request->query->get('subject'));
             $model->setSubject($subject);
         }
-    }
-
-    /**
-     * @param string      $emailAddress
-     * @param string|null $ownerClass
-     * @param mixed|null  $ownerId
-     */
-    protected function preciseFullEmailAddress(&$emailAddress, $ownerClass = null, $ownerId = null)
-    {
     }
 
     /**

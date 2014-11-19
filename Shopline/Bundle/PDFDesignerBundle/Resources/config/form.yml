@@ -2,6 +2,7 @@ parameters:
     shopline.form.handler.designertemplate.class: Shopline\Bundle\PDFDesignerBundle\Form\Handler\DesignerTemplateHandler
     shopline.form.type.designertemplate.class:    Shopline\Bundle\PDFDesignerBundle\Form\Type\DesignerTemplateType
     shopline.form.type.designertemplate_translation.class: Shopline\Bundle\PDFDesignerBundle\Form\Type\DesignerTemplateTranslationType
+
 services:
     shopline.form.designertemplate:
         class: Symfony\Component\Form\Form
@@ -30,3 +31,6 @@ services:
         class: %shopline.form.type.designertemplate_translation.class%
         tags:
             - { name: form.type, alias: shopline_designertemplate_translatation }
+
+    shopline.twig.string_loader:
+        class: Twig_Loader_String

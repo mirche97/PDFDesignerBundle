@@ -63,7 +63,7 @@ class DesignerTemplateRepository extends EntityRepository
 
     /**
      * Return a query builder which can be used to get names of entities
-     * which have at least one email template
+     * which have at least one designer template
      *
      * @return QueryBuilder
      */

@@ -1,2 +1,2 @@
 bundles:
-    - Shopline\Bundle\PDFDesignerBundle\ShoplinePDFDesignerBundle
+    - { name: Shopline\Bundle\PDFDesignerBundle\ShoplinePDFDesignerBundle, kernel: true, priority: -60 }
