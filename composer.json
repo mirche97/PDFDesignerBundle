@@ -1,6 +1,6 @@
 {
     "name": "shopline/oro-pdfdesigner",
-    "description": "Save reports as PDF",
+    "description": "PDF Designer Bundle for creating PDF templates for Oro Platform using wkhtmltopdf.",
     "license": "MIT",
     "homepage": "https://github.com/shopline/PDFDesignerBundle",
     "autoload": {
