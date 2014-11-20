@@ -1,3 +1,4 @@
+{% import 'OroUIBundle::macros.html.twig' as UI %}
 <html>
     <head>
         <style>
@@ -7,6 +8,17 @@
     <body>
         <table border="0">
             <thead>
+            {% if pdf == '' %}
+                <tr><td>
+        {{ UI.button({
+        'path':  path('shopline_designertemplate_preview', {'id': id, 'pdf':'pdf'}),
+        'title': 'oro.email.emailtemplate.action.clone'|trans,
+        'label': 'oro.email.emailtemplate.action.clone'|trans,
+        'aCss': 'btn-success',
+        'iCss': 'icon-share'
+        }) }}
+{% endif %}
+                </td></tr>
                 <tr>
                     <td>{{header|raw}}</td>
                 </tr>

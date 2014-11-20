@@ -4,6 +4,7 @@ parameters:
     shopline.designertemplate.datagrid_view_list.class:  Shopline\Bundle\PDFDesignerBundle\Datagrid\DesignerTemplatesViewList
     shopline.designertemplate.datagrid_helper.class:     Shopline\Bundle\PDFDesignerBundle\Datagrid\DesignerTemplateGridHelper
     shopline.listener.navigation_listener.class:         Shopline\Bundle\PDFDesignerBundle\EventListener\NavigationListener
+
 #    shopline_pdf_designer.example.class: Shopline\Bundle\PDFDesignerBundle\Example
     
 services:
