@@ -10,8 +10,6 @@ use Oro\Bundle\EmailBundle\Provider\SystemVariablesProvider;
 use Oro\Bundle\SecurityBundle\Annotation\Acl;
 use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
 use Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplate as DesignerTemplate;
-use Oro\Bundle\ReportBundle\Entity\Report;
-use Oro\Bundle\ReportBundle\Entity\ReportType;
 
 /**
  * @Route("/pdfdesigner")
@@ -34,17 +32,6 @@ class DefaultController extends Controller
         return $this->update($entity, $isClone);
     } 
     /**
-    * @Route("/template/clone", name="shopline_designertemplate_clone")
-    * @Acl(
-        id="shopline_designertemplate_clone",
-        type="entity",
-        class="ShoplinePDFDesignerBundle:DesignerTemplate",
-        permission="EDIT"
-    * )
-    */
-    public function cloneAction(){
-    }
-    /**
      * @Route("/templates/", name="shopline_manage_template"  )
      * @Acl(
      *      id="shopline_pdfdesignertemplate_update",
@@ -58,60 +45,6 @@ class DefaultController extends Controller
     public function indexAction($name='')
     {
         return $this->render('ShoplinePDFDesignerBundle:Default:index.html.twig');
-    }
-    /**
-     * @Route("/template/view/{id}", name="shopline_template_view"  )
-     * @Acl(
-     *      id="shopline_template_view",
-     *      type="entity",
-     *      class="ShoplinePDFDesignerBundle:DesignerTemplate",
-     *      permission="EDIT"
-     * )
-     * @Template()
-     */
-
-    public function viewTemplateAction(DesignerTemplate $entity)
-    {
-        $this->get('oro_segment.entity_name_provider')->setCurrentItem($entity);
-
-        $reportGroup = $this->get('oro_entity_config.provider.entity')
-            ->getConfig($entity->getEntity())
-            ->get('plural_label');
-        $parameters = [
-            'entity'      => $entity,
-            'reportGroup' => $reportGroup
-        ];
-
-        $reportType = ReportType::TYPE_TABLE;
-        if ($reportType === ReportType::TYPE_TABLE) {
-            $gridName = $entity::GRID_PREFIX . $entity->getId();
-
-            if ($this->get('oro_report.datagrid.configuration.provider')->isReportValid($gridName)) {
-                $parameters['gridName'] = $gridName;
-
-                $datagrid = $this->get('oro_datagrid.datagrid.manager')
-                    ->getDatagrid(
-                        $gridName,
-                        [PagerInterface::PAGER_ROOT_PARAM => [PagerInterface::DISABLED_PARAM => true]]
-                    );
-
-                $chartOptions = $this
-                    ->get('oro_chart.options_builder')
-                    ->buildOptions(
-                        $entity->getChartOptions(),
-                        $datagrid->getConfig()->toArray()
-                    );
-
-                if (!empty($chartOptions)) {
-                    $parameters['chartView'] = $this->get('oro_chart.view_builder')
-                        ->setDataGrid($datagrid)
-                        ->setOptions($chartOptions)
-                        ->getView();
-                }
-            }
-        }
-
-        return $this->render('ShoplinePDFDesignerBundle:Default:viewtemplate.html.twig',$parameters);
     }
     /**
      * @Route("/template/create", name="shopline_designertemplate_create")
