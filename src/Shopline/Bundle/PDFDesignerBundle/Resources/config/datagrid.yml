@@ -70,7 +70,3 @@ datagrid:
                 icon:         edit
                 acl_resource: shopline_designertemplate_update
                 rowAction:    true
-
-        action_configuration: @shopline.designertemplate.datagrid_helper->getActionConfigurationClosure
-        views_list : @shopline.designertemplate.datagrid_view_list
-        options: { entityHint: email template }

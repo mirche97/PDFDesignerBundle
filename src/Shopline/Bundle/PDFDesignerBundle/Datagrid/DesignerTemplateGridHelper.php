@@ -58,8 +58,6 @@ class DesignerTemplateGridHelper extends BaseGridHelper
     public function getEntityNames()
     {
         $result            = [];
-        $result['_empty_'] = $this->translator->trans('shopline.filter.entityName.empty');
-
         $result = array_merge($result, parent::getEntityNames());
 
         return $result;

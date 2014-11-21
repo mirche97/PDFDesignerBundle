@@ -9,6 +9,14 @@ shopline:
             Owner:
                 label: 'Owner'
     pdfdesigner:
+        action:
+            save_pdf: 'Save as PDF'
         designertemplate:
             owner:
                 label: 'Owner'
+    filter:
+        type:
+            html: 'text/html'
+            txt:  'text/plain'
+        entityName:
+            empty: ''

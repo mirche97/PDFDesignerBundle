@@ -1,6 +1,8 @@
 {% import 'OroUIBundle::macros.html.twig' as UI %}
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/oro.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/orodistribution/css/style.css') }}"/>
         <style>
         {{styleContent}}
         </style>
@@ -12,8 +14,8 @@
                 <tr><td>
         {{ UI.button({
         'path':  path('shopline_designertemplate_preview', {'id': id, 'pdf':'pdf'}),
-        'title': 'oro.email.emailtemplate.action.clone'|trans,
-        'label': 'oro.email.emailtemplate.action.clone'|trans,
+        'title': 'shopline.pdfdesigner.action.save_pdf'|trans,
+        'label': 'shopline.pdfdesigner.action.save_pdf'|trans,
         'aCss': 'btn-success',
         'iCss': 'icon-share'
         }) }}

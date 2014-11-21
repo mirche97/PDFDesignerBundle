@@ -14,13 +14,12 @@ oro_menu_config:
     tree:
         application_menu:
             children:
-                shopline_pdfdesigner:
+                system_tab:
                     children:
-                        shopline_tab_link: ~
+                        shopline_pdfdesigner:
+                            children:
+                                shopline_tab_link: ~
 
-        usermenu:
-            children:
-                shopline_tab_link: ~
 oro_titles:
     shopline_tab_link: 'shopline.template.title'
     shopline_designertemplate_create: "Create Template"
