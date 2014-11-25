@@ -22,16 +22,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php app/console cache:clear --env=dev",
-            "php app/console cache:clear --env=prod",
-            "php app/console oro:translation:dump",
-            "php app/console doctrine:schema:update --force"
+            "Shopline\\Bundle\\PDFDesigner\\Composer\\DesignerHandler::InstallDesigner"
         ],
         "post-update-cmd": [
-            "php app/console cache:clear --env=dev",
-            "php app/console cache:clear --env=prod",
-            "php app/console oro:translation:dump",
-            "php app/console doctrine:schema:update --force"
+            "Shopline\\Bundle\\PDFDesigner\\Composer\\DesignerHandler::InstallDesigner"
         ]
     },
     "extra": {

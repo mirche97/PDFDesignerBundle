@@ -1,0 +1,3 @@
+shopline_pdfdesigner:
+    resource: "@ShoplinePDFDesignerBundle/Controller"
+    type: annotation
