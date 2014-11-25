@@ -21,10 +21,10 @@
         "knplabs/knp-snappy-bundle": "v1.2"
     },
     "scripts": {
-        "post-install-cmd": [
+        "post-package-install": [
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ],
-        "post-update-cmd": [
+        "post-package-update": [
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ]
     },
