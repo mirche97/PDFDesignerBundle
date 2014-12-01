@@ -24,7 +24,7 @@ class DesignerHandler
 
             return;
         }
-        $commands = array('cache:clear --no-warmup', 'doctrine:schema:update --force', 'oro:translation:dump');
+        $commands = array('cache:clear --no-warmup', 'doctrine:schema:update --force', 'oro:translation:dump', 'oro:entity-config:update');
         foreach($commands as $command)
             static::executeCommand($event, $appDir, $command, $options['process-timeout']);
     }
