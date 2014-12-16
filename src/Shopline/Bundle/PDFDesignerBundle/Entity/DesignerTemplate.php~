@@ -697,27 +697,4 @@ class DesignerTemplate extends AbstractQueryDesigner implements Translatable , G
     {
         return $this->organization;
     }
-
-    /**
-     * Add translations
-     *
-     * @param \Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplateTranslation $translations
-     * @return DesignerTemplate
-     */
-    public function addTranslation(\Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplateTranslation $translations)
-    {
-        $this->translations[] = $translations;
-
-        return $this;
-    }
-
-    /**
-     * Remove translations
-     *
-     * @param \Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplateTranslation $translations
-     */
-    public function removeTranslation(\Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplateTranslation $translations)
-    {
-        $this->translations->removeElement($translations);
-    }
 }
