@@ -28,16 +28,10 @@
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ],
         "post-install-cmd": [
-            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner",
-            "app/console doctrine:schema:update --force",
-            "app/console oro:translation:dump",
-            "app/console oro:entity-config:update"
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ],
         "post-update-cmd": [
-            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner",
-            "app/console doctrine:schema:update --force",
-            "app/console oro:translation:dump",
-            "app/console oro:entity-config:update"
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ]
     },
     "config": {
