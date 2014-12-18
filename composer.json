@@ -29,11 +29,15 @@
         ],
         "post-install-cmd": [
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner",
-            "app/console doctrine:schema:update --force"
+            "app/console doctrine:schema:update --force",
+            "app/console oro:translation:dump",
+            "app/console oro:entity-config:update"
         ],
         "post-update-cmd": [
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner",
-            "php app/console doctrine:schema:update --force"
+            "app/console doctrine:schema:update --force",
+            "app/console oro:translation:dump",
+            "app/console oro:entity-config:update"
         ]
     },
     "config": {
