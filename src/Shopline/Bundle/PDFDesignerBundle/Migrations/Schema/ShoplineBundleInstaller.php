@@ -24,20 +24,12 @@ class ShoplineBundleInstaller implements Installation {
      * @inheritdoc
      */
     public function up(Schema $schema, QueryBag $queries) {
-        $queries->addQuery(
-            new UpdateOwnershipTypeQuery(
-                'Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplate',
-                [
-                    'organization_field_name' => 'organization',
-                    'organization_column_name' => 'organization_id'
-                ]
-            )
-        );
-       /* $table = $schema->createTable('test_installation_table');
+        
+        $table = $schema->createTable('test_installation_table');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('field', 'string', ['length' => 500]);
         $table->setPrimaryKey(['id']);
-         $this->renameExtension->renameTable(
+       /*  $this->renameExtension->renameTable(
             $schema,
             $queries,
             'test_installation_table',
