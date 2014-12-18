@@ -34,17 +34,9 @@
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ]
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "extra": {
-	"symfony-app-dir": "app",
-        "symfony-web-dir": "web",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
+     "branch-alias": {
+          "dev-master": "1.0.x-dev"
         }
     }
 }
