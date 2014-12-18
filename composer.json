@@ -28,10 +28,12 @@
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ],
         "post-install-cmd": [
-            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner",
+             "doctrine:schema:update --force"
         ],
         "post-update-cmd": [
-            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner",
+             "doctrine:schema:update --force"
         ]
     },
     "extra": {

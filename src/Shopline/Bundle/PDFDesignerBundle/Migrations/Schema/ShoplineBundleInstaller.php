@@ -24,8 +24,16 @@ class ShoplineBundleInstaller implements Installation {
      * @inheritdoc
      */
     public function up(Schema $schema, QueryBag $queries) {
-        
-        $table = $schema->createTable('test_installation_table');
+        $queries->addQuery(
+            new UpdateOwnershipTypeQuery(
+                'Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplate',
+                [
+                    'organization_field_name' => 'organization',
+                    'organization_column_name' => 'organization_id'
+                ]
+            )
+        );
+       /* $table = $schema->createTable('test_installation_table');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('field', 'string', ['length' => 500]);
         $table->setPrimaryKey(['id']);
@@ -63,10 +71,7 @@ class ShoplineBundleInstaller implements Installation {
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
             ");
-             $queries->addQuery("ALTER TABLE `shopline_designer_template`
-  ADD CONSTRAINT `FK_911F651732C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `oro_organization` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `FK_911F65179EB185F9` FOREIGN KEY (`user_owner_id`) REFERENCES `oro_user` (`id`) ON DELETE SET NULL;
-");
+           
         $queries->addQuery(
                 "CREATE TABLE IF NOT EXISTS `shopline_designer_template_translation` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -80,9 +85,46 @@ class ShoplineBundleInstaller implements Installation {
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
                    "
         );
+          $queries->addQuery("ALTER TABLE `shopline_designer_template`
+  ADD CONSTRAINT `FK_911F651732C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `oro_organization` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `FK_911F65179EB185F9` FOREIGN KEY (`user_owner_id`) REFERENCES `oro_user` (`id`) ON DELETE SET NULL;
+");
         $queries->addQuery("ALTER TABLE `shopline_designer_template_translation`
                                 ADD CONSTRAINT `FK_B89C4580232D562B` FOREIGN KEY (`object_id`) REFERENCES `shopline_designer_template` (`id`) ON DELETE CASCADE;
-                            ");
+                            ");*/
     }
+    
+    /**
+     * Create oro_dashboard_widget_state table
+     *
+     * @param Schema $schema
+     */
+    protected function createshopline_designer_templateTable(Schema $schema)
+    {
+        $table = $schema->createTable('shopline_designer_template');
+        $table->addColumn('id', 'integer', ['autoincrement' => true]);
+        $table->addColumn('user_owner_id', 'integer', ['notnull' => false]);
+        $table->addColumn('organization_id', 'integer', ['notnull' => false]);
+        $table->addColumn('isSystem', 'boolean', []);
+        $table->addColumn('isEditable', 'boolean', []);
+        $table->addColumn('name', 'string', ['length' => 255]);
+        $table->addColumn('parent', 'integer', ['notnull' => true]);
+
+        $table->addColumn('parent', 'integer', ['notnull' => true]);
+        $table->addColumn('content', 'longtext');
+        $table->addColumn('style_content', 'longtext');
+        $table->addColumn('footer', 'longtext');
+        $table->addColumn('entityName', 'string', ['length' => 255]);
+        $table->addColumn('created_at', 'datetime', ['notnull' => true]);
+        $table->addColumn('updated_at', 'datetime', ['notnull' => true]);
+        $table->addColumn('`type`', 'string', ['length' => 20]);
+        $table->addColumn('parent', 'integer', ['notnull' => true]);
+        
+        $table->addIndex(['user_owner_id'], 'idx_4b4f5f879eb185f9', []);
+
+        $table->setPrimaryKey(['id']);
+    }
+    
+    
 
 }
