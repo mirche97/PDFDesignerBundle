@@ -16,9 +16,7 @@ class DesignerHandler
      */
     public static function InstallDesigner(CommandEvent $event)
     {
-	 echo "something: ";
-    $foo = trim(fgets(STDIN));
-    echo "you said " . $foo;
+	
         $options = self::getOptions($event);
         $appDir = $options['symfony-app-dir'];
 
