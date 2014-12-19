@@ -36,7 +36,7 @@ or run:
 ```
 composer require shopline/oro-pdfdesigner
 ```
-Also add the following lines if you want to use in oro to the composer.json
+Also add the following lines to the composer.json
 
 "scripts": {
 
