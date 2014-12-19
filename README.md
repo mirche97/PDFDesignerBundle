@@ -39,7 +39,9 @@ composer require shopline/oro-pdfdesigner
 Also add the following lines if you want to use in oro to the composer.json
 
 "scripts": {
+
         "post-install-cmd": ["Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"],
+        
         "post-update-cmd": ["Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"]
   }
 
