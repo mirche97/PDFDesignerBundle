@@ -18,7 +18,8 @@ class DesignerHandler
     {
         $options = self::getOptions($event);
         $appDir = $options['symfony-app-dir'];
-	if (!is_dir($appDir)) {
+
+        if (!is_dir($appDir)) {
             echo 'The symfony-app-dir ('.$appDir.') specified in composer.json was not found in '.getcwd().', can not clear the cache.'.PHP_EOL;
 
             return;

@@ -21,7 +21,8 @@ oro_menu_config:
                                 shopline_tab_link: ~
 
 oro_titles:
+    shopline_tab_link: 'shopline.template.title'
+    shopline_designertemplate_create: "Create Template"
+    shopline_designertemplate_update: "Update Pdf Template"
     shopline_manage_template: "Manage pdf templates"
-    
-    
-    
+    shopline_designertemplate_preview: "Preview Template"
