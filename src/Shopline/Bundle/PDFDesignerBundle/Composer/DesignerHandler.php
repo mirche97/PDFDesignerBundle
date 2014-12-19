@@ -16,6 +16,9 @@ class DesignerHandler
      */
     public static function InstallDesigner(CommandEvent $event)
     {
+	 echo "something: ";
+    $foo = trim(fgets(STDIN));
+    echo "you said " . $foo;
         $options = self::getOptions($event);
         $appDir = $options['symfony-app-dir'];
 
@@ -26,7 +29,7 @@ class DesignerHandler
         }
         $commands = array('cache:clear --no-warmup', 'doctrine:schema:update --force', 'oro:translation:dump', 'oro:entity-config:update');
         foreach($commands as $command)
-            static::executeCommand($event, $appDir, $command, $options['process-timeout']);
+            self::executeCommand($event, $appDir, $command, $options['process-timeout']);
     }
     protected static function executeCommand(CommandEvent $event, $appDir, $cmd, $timeout = 300)
     {
