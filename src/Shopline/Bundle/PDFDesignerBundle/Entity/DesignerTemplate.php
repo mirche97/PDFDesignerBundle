@@ -70,7 +70,7 @@ class DesignerTemplate extends AbstractQueryDesigner implements Translatable , G
     /**
      * @var string
      *
-     * @ORM\Column(name="definition", type="text")
+     * @ORM\Column(name="definition", type="text",nullable=true)
      */
     protected $definition;
 
