@@ -36,4 +36,10 @@ or run:
 ```
 composer require shopline/oro-pdfdesigner
 ```
+Also add to composer.json
+
+"scripts": {
+        "post-install-cmd": ["Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"],
+        "post-update-cmd": ["Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"]
+  }
 
