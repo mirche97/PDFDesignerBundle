@@ -6,6 +6,7 @@ excluded_paths:
 - 'Tests/*'
 before_commands:
 - 'composer --prefer-source --dev install'
+- 'composer run-script post-install-cmd',
 - 'cp phpunit.xml.dist phpunit.xml'
 tools:
 php_mess_detector:
