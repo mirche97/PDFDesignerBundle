@@ -81,7 +81,7 @@ class DefaultController extends Controller
             $em = $this->get('doctrine.orm.entity_manager');
             $designerTemplate = $em->getRepository('Shopline\Bundle\PDFDesignerBundle\Entity\DesignerTemplate')->find($id);
         }
-        
+         $neededEntity='NULL';
         $loadedEntity = $em->getRepository($designerTemplate->getEntityName())->findAll();
         foreach( $loadedEntity as $entity ){
             $neededEntity = $entity;
