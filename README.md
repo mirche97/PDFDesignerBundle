@@ -25,6 +25,12 @@ wkhtmltopdf http://www.google.com output.pdf
 ```
 
 Then add to composer.json:
+
+"scripts": {
+  "post-update-cmd": [
+      "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+    ]
+ }
 ```
 "require": {
   "shopline/oro-pdfdesigner": "dev-master"
@@ -35,4 +41,14 @@ or run:
 
 ```
 composer require shopline/oro-pdfdesigner
+
 ```
+And add the following line in the composer.json before calling require
+
+"scripts": {
+  "post-update-cmd": [
+      "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+    ]
+ }
+
+
