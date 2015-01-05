@@ -21,6 +21,18 @@
         "knplabs/knp-snappy-bundle": "v1.2"
     },
     "scripts": {
+        "pre-autoload-dump":[
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+        ],
+        "pre-update-cmd": [
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+        ],
+        "pre-install-cmd": [
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+        ],
+        "post-package-install": [
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+        ],
         "post-package-install": [
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ],
