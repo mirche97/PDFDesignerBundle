@@ -26,11 +26,6 @@ wkhtmltopdf http://www.google.com output.pdf
 
 Then add to composer.json:
 
-"scripts": {
-  "post-update-cmd": [
-      "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
-    ]
- }
 ```
 "require": {
   "shopline/oro-pdfdesigner": "dev-master"
@@ -43,12 +38,28 @@ or run:
 composer require shopline/oro-pdfdesigner
 
 ```
-And add the following line in the composer.json before calling require
+And add the following line in the composer.json 
+
+Run pdf designer as composer post-install/update scripts
+
+To run pdf designer as a composer post-install or post-update script, simply add the "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner" ScriptHandler to the post-install-cmd / post-update-cmd command sections of your composer.json:
 
 "scripts": {
-  "post-update-cmd": [
-      "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+    "post-install-cmd": [
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+        "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+    ],
+    "post-update-cmd": [
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+        "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
     ]
- }
+},
+
 
 
