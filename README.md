@@ -44,7 +44,9 @@ Run pdf designer as composer post-install/update scripts
 
 To run pdf designer as a composer post-install or post-update script, simply add the "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner" ScriptHandler to the post-install-cmd / post-update-cmd command sections of your composer.json:
 
+
 "scripts": {
+
     "post-install-cmd": [
         "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
         "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
@@ -59,6 +61,7 @@ To run pdf designer as a composer post-install or post-update script, simply add
         "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
         "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
     ]
+    
 },
 
 
