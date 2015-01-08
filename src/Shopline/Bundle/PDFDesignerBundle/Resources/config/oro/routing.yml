@@ -1,3 +1,6 @@
+oro_auto_routing:
+    resource: .
+    type:     oro_auto
 shopline_pdfdesigner:
     resource: "@ShoplinePDFDesignerBundle/Controller"
     type: annotation
