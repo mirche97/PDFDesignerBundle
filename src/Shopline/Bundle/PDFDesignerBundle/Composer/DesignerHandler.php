@@ -29,6 +29,22 @@ class DesignerHandler
         foreach($commands as $command)
             self::executeCommand($event, $appDir, $command, $options['process-timeout']);
     }
+     public static function PostInstallDesigner(CommandEvent $event)
+    {
+	
+        $options = self::getOptions($event);
+        $appDir = $options['symfony-app-dir'];
+
+        if (!is_dir($appDir)) {
+            echo 'The symfony-app-dir ('.$appDir.') specified in composer.json was not found in '.getcwd().', can not clear the cache.'.PHP_EOL;
+
+            return;
+        }
+        $commands = array('cache:clear --no-warmup','doctrine:schema:update --force', 'oro:translation:dump', 'oro:entity-config:update');
+        foreach($commands as $command)
+            self::executeCommand($event, $appDir, $command, $options['process-timeout']);
+    }
+    
     protected static function executeCommand(CommandEvent $event, $appDir, $cmd, $timeout = 300)
     {
         $php = escapeshellarg(self::getPhp());
