@@ -3,6 +3,11 @@
     "description": "PDF Designer Bundle for creating PDF templates for Oro Platform using wkhtmltopdf.",
     "license": "MIT",
     "homepage": "https://github.com/shopline/PDFDesignerBundle",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Jaskamal",
@@ -29,12 +34,6 @@
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ]
     },
-    "autoload": {
-        "psr-0": {
-            "Shopline\\Bundle\\PDFDesignerBundle": ""
-        }
-    },
-    "target-dir": "Shopline\\Bundle\\PDFDesignerBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
