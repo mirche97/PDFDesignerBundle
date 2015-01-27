@@ -44,7 +44,7 @@ datagrid:
                     data_name: t.entityName
                     null_value: _empty_
                     options:
-                        is_translated_choices: true
+                        #is_translated_choices: true
                         field_options:
                             multiple:       true
                             choices:        @shopline.designertemplate.datagrid_helper->getEntityNames
