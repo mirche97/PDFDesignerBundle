@@ -5,7 +5,7 @@
     "homepage": "https://github.com/shopline/PDFDesignerBundle",
     "autoload": {
         "psr-0": {
-            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner": "src"
+            "": "src"
         }
     },
     "authors": [
