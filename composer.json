@@ -17,7 +17,6 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0",
-        "oro/platform": "*",
         "knplabs/knp-snappy-bundle": "v1.2"
     },
     "scripts": {
