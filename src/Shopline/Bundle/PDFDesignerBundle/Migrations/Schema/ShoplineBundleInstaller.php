@@ -2,7 +2,6 @@
 
 namespace Shopline\Bundle\PDFDesignerBundle\Migrations\Schema;
 
-
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
@@ -31,6 +30,7 @@ class ShoplineBundleInstaller implements Installation
         $this->shoplineTemplate($schema);
         $this->shoplineTemplateForeignKeys($schema);
         //$this->shoplineTemplateTranslate($schema);
+        //$this->shoplineTemplateTranslationForeignKeys($schema);
     }
     
     protected function shoplineTemplate(Schema $schema){
@@ -61,8 +61,8 @@ class ShoplineBundleInstaller implements Installation
         $table->addForeignKeyConstraint($schema->getTable('oro_organization'), ['organization_id'], ['id'], ['onDelete' => 'CASCADE', 'onUpdate' => null]);
        
     }
+    
     protected function shoplineTemplateTranslate(Schema $schema){
-        /** Generate table oro_email_template_translation **/
         $table = $schema->createTable('shopline_designer_template_translation');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('object_id', 'integer', ['notnull' => false]);
@@ -70,18 +70,15 @@ class ShoplineBundleInstaller implements Installation
         $table->addColumn('field', 'string', ['length' => 32]);
         $table->addColumn('content', 'text', ['notnull' => false]);
         $table->setPrimaryKey(['id']);
-        $table->addIndex(['object_id'], 'IDX_F42DCDB8232D562B', []);
-        $table->addIndex(['locale', 'object_id', 'field'], 'lookup_unique_idx', []);
     }
     
      /**
-     * Generate foreign keys for table oro_email_template_translation
+     * Generate foreign keys for table shopline_designer_template_translation
      *
      * @param Schema $schema
      */
     public static function shoplineTemplateTranslationForeignKeys(Schema $schema)
     {
-        /** Generate foreign keys for table shopline_designer_template_translation **/
         $table = $schema->getTable('shopline_designer_template_translation');
         $table->addForeignKeyConstraint(
             $schema->getTable('shopline_designer_template'),
@@ -89,7 +86,6 @@ class ShoplineBundleInstaller implements Installation
             ['id'],
             ['onDelete' => 'CASCADE', 'onUpdate' => null]
         );
-        /** End of generate foreign keys for table shopline_designer_template_translation **/
     }
     
 }
