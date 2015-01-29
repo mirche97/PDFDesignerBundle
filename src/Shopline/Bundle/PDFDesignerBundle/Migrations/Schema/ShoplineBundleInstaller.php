@@ -27,12 +27,13 @@ class ShoplineBundleInstaller implements Installation
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-        //$this->install_shopline_designer_template_translation($schema);
-        $this->install_shopline_designer_template($schema);
-        $this->addForeignKey_shopline_designer_template($schema);
+       
+        $this->shoplineTemplate($schema);
+        $this->shoplineTemplateForeignKeys($schema);
+        //$this->shoplineTemplateTranslate($schema);
     }
     
-    protected function install_shopline_designer_template(Schema $schema){
+    protected function shoplineTemplate(Schema $schema){
         $table = $schema->createTable('shopline_designer_template');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('user_owner_id', 'integer', ['notnull' => false]);
@@ -54,20 +55,41 @@ class ShoplineBundleInstaller implements Installation
         $table->setPrimaryKey(['id']);
     }
     
-    protected function addForeignKey_shopline_designer_template($schema){
+    protected function shoplineTemplateForeignKeys($schema){
         $table = $schema->getTable('shopline_designer_template');
         $table->addForeignKeyConstraint($schema->getTable('oro_user'), ['user_owner_id'], ['id'], ['onDelete' => 'CASCADE', 'onUpdate' => null]);
         $table->addForeignKeyConstraint($schema->getTable('oro_organization'), ['organization_id'], ['id'], ['onDelete' => 'CASCADE', 'onUpdate' => null]);
        
     }
-    protected function install_shopline_designer_template_translation(Schema $schema){
+    protected function shoplineTemplateTranslate(Schema $schema){
+        /** Generate table oro_email_template_translation **/
         $table = $schema->createTable('shopline_designer_template_translation');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('object_id', 'integer', ['notnull' => false]);
         $table->addColumn('locale', 'string', ['length' => 8]);
-        $table->addColumn('field', 'string', ['length' => 50]);
+        $table->addColumn('field', 'string', ['length' => 32]);
         $table->addColumn('content', 'text', ['notnull' => false]);
         $table->setPrimaryKey(['id']);
+        $table->addIndex(['object_id'], 'IDX_F42DCDB8232D562B', []);
+        $table->addIndex(['locale', 'object_id', 'field'], 'lookup_unique_idx', []);
+    }
+    
+     /**
+     * Generate foreign keys for table oro_email_template_translation
+     *
+     * @param Schema $schema
+     */
+    public static function shoplineTemplateTranslationForeignKeys(Schema $schema)
+    {
+        /** Generate foreign keys for table shopline_designer_template_translation **/
+        $table = $schema->getTable('shopline_designer_template_translation');
+        $table->addForeignKeyConstraint(
+            $schema->getTable('shopline_designer_template'),
+            ['object_id'],
+            ['id'],
+            ['onDelete' => 'CASCADE', 'onUpdate' => null]
+        );
+        /** End of generate foreign keys for table shopline_designer_template_translation **/
     }
     
 }
