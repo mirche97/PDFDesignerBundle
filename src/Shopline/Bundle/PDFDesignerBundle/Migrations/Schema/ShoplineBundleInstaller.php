@@ -26,7 +26,7 @@ class ShoplineBundleInstaller implements Installation
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-       
+       ini_set("display_errors",1);
         $this->shoplineTemplate($schema);
         $this->shoplineTemplateForeignKeys($schema);
         //$this->shoplineTemplateTranslate($schema);
@@ -64,7 +64,7 @@ class ShoplineBundleInstaller implements Installation
     
     protected function shoplineTemplateTranslate(Schema $schema){
         $table = $schema->createTable('shopline_designer_template_translation');
-        $table->addColumn('id', 'integer', ['autoincrement' => true]);
+        $table->addColumn('id', 'integesr', ['autoincrement' => true]);
         $table->addColumn('object_id', 'integer', ['notnull' => false]);
         $table->addColumn('locale', 'string', ['length' => 8]);
         $table->addColumn('field', 'string', ['length' => 32]);
