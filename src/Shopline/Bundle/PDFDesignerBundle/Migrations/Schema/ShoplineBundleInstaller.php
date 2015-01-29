@@ -26,15 +26,15 @@ class ShoplineBundleInstaller implements Installation
      * @inheritdoc
      */
     public function up(Schema $schema, QueryBag $queries)
-    {
+    { 
         $table = $schema->createTable('test_installation_table');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('field', 'string', ['length' => 500]);
         $table->setPrimaryKey(['id']);
         // @codingStandardsIgnoreStart
-
+        /*
         /** Generate table shopline_designer_template **/
-        $table = $schema->createTable('shopline_designer_template');
+        /*$table = $schema->createTable('shopline_designer_template');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('user_owner_id', 'integer', []);
         $table->addColumn('organization_id', 'integer', []);
@@ -57,7 +57,7 @@ class ShoplineBundleInstaller implements Installation
         /** End of generate table oro_sidebar_state **/
 
         /** Generate table oro_sidebar_widget **/
-        $table = $schema->createTable('shopline_designer_template_translation');
+       /* $table = $schema->createTable('shopline_designer_template_translation');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('object_id', 'integer', []);
         $table->addColumn('locale', 'string', ['length' => 8]);
