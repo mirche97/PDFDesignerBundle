@@ -77,7 +77,7 @@ class ShoplineBundleInstaller implements Installation
      *
      * @param Schema $schema
      */
-    public static function shoplineTemplateTranslationForeignKeys(Schema $schema)
+    protected function shoplineTemplateTranslationForeignKeys(Schema $schema)
     {
         $table = $schema->getTable('shopline_designer_template_translation');
         $table->addForeignKeyConstraint(
