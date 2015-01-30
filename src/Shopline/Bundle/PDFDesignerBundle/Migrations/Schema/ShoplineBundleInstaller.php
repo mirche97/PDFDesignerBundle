@@ -83,12 +83,4 @@ class ShoplineBundleInstaller implements Installation {
         );
     }
     
-    protected function rename_designer_template_translate(Schema $schema,$query){
-        $this->renameExtension->renameTable(
-            $schema,
-            'designer_template_translate',
-            'shopline_designer_template_translation'
-        );
-    }
-
 }
