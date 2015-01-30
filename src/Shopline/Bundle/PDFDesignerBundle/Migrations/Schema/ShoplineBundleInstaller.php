@@ -26,7 +26,7 @@ class ShoplineBundleInstaller implements Installation
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-       ini_set("display_errors",1);
+       
         $this->shoplineTemplate($schema);
         $this->shoplineTemplateForeignKeys($schema);
         //$this->shoplineTemplateTranslate($schema);
