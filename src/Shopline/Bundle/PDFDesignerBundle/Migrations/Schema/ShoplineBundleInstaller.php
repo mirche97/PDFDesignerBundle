@@ -64,7 +64,7 @@ class ShoplineBundleInstaller implements Installation
     
     protected function shoplineTemplateTranslate(Schema $schema){
         $table = $schema->createTable('shopline_designer_template_translation');
-        $table->addColumn('id', 'integesr', ['autoincrement' => true]);
+        $table->addColumn('id', 'integer', ['autoincrement' => true]);
         $table->addColumn('object_id', 'integer', ['notnull' => false]);
         $table->addColumn('locale', 'string', ['length' => 8]);
         $table->addColumn('field', 'string', ['length' => 32]);
