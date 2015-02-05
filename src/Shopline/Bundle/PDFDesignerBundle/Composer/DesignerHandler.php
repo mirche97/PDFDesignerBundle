@@ -6,6 +6,7 @@ use Symfony\Component\ClassLoader\ClassCollectionLoader;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Composer\Script\CommandEvent;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class DesignerHandler
 {
@@ -16,7 +17,8 @@ class DesignerHandler
      */
     public static function InstallDesigner(CommandEvent $event)
     {
-	
+	$output=new OutputInterface;
+         $output->writeln('<comment>Install Designer</comment>');
         $options = self::getOptions($event);
         $appDir = $options['symfony-app-dir'];
 
