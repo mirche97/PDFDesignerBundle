@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopline\Bundle\PDFDesignerBundle\Migrations\Schema;
+namespace Shopline\Bundle\PDFDesignerBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
