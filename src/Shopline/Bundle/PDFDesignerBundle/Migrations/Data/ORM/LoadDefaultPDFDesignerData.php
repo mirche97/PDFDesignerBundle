@@ -1,12 +1,13 @@
 <?php
 
+
 namespace Shopline\Bundle\PDFDesignerBundle\Migrations\Data\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 
 
-class LoadDefaultPDFDesigner extends AbstractFixture
+class LoadDefaultPDFDesigner extends FixtureInterface
 {
     /**
      * {@inheritDoc}
