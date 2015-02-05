@@ -31,6 +31,9 @@
         ],
         "post-update-cmd": [
             "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
+        ],
+        "pre-install-cmd": [
+            "Shopline\\Bundle\\PDFDesignerBundle\\Composer\\DesignerHandler::InstallDesigner"
         ]
     },
     "extra": {
