@@ -1,6 +1,8 @@
 PDFDesignerBundle
 ====================
 
+##NOTE: This is still under heavy development and is not ready for production.
+
 PDF Designer Bundle for creating PDF templates for [Oro Platform](https://github.com/orocrm/platform) using [wkhtmltopdf](http://wkhtmltopdf.org/).
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/23664eed-3391-4310-85d8-c3c4c6199ba5/mini.png)](https://insight.sensiolabs.com/projects/23664eed-3391-4310-85d8-c3c4c6199ba5)
