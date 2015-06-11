@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Oro\Bundle\LocaleBundle\Model\LocaleSettings;
-use Oro\Bundle\ConfigBundle\Config\UserConfigManager;
+use Oro\Bundle\ConfigBundle\Config\ConfigManager;
 use Oro\Bundle\QueryDesignerBundle\Form\Type\AbstractQueryDesignerType;
 use Oro\Bundle\ReportBundle\Form\Type\ReportType;
 class DesignerTemplateType extends AbstractQueryDesignerType
@@ -25,10 +25,10 @@ class DesignerTemplateType extends AbstractQueryDesignerType
     private $localeSettings;
 
     /**
-     * @param UserConfigManager $userConfig
+     * @param ConfigManager $userConfig
      * @param LocaleSettings    $localeSettings
      */
-    public function __construct(UserConfigManager $userConfig, LocaleSettings $localeSettings)
+    public function __construct(ConfigManager $userConfig, LocaleSettings $localeSettings)
     {
         $this->userConfig     = $userConfig;
         $this->localeSettings = $localeSettings;
